@@ -1,13 +1,13 @@
 import React from "react";
-
+import {NavLink} from "react-router-dom";
 const Navbar = () => {
   return (
     <div className="container">
       <nav className="navbar navbar-expand-lg bg-body-tertiary navbar-dark bg-primary ">
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">
+          <NavLink className="navbar-brand" exact to="/">
             Users
-          </a>
+          </NavLink>
           <button
             className="navbar-toggler"
             type="button"
@@ -22,19 +22,19 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">
+                <NavLink className="nav-link" aria-current="page" exact to="/">
                   Home
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/about">
+                <NavLink className="nav-link" exact to="/about">
                   About
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/contact">
+                <NavLink className="nav-link" exact to="/contact">
                   Contact
-                </a>
+                </NavLink>
               </li>
             </ul>
           </div>
@@ -44,3 +44,12 @@ const Navbar = () => {
   );
 };
 export default Navbar;
+
+
+
+/* Important Notes
+/**
+ * Home prr by default active behavior lga hua hai ,hum isko remove krr sakte hai by using 
+ * react router ke navigation  se 
+ * 
+ */
