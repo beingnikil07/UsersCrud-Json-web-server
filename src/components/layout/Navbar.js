@@ -1,5 +1,5 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 const Navbar = () => {
   return (
     <div className="container">
@@ -38,14 +38,15 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
+          <Link>
+            <Link className="btn btn-primary bg-success mr-2" exact to="/adduser">Add User</Link>
+          </Link>
         </div>
       </nav>
     </div>
   );
 };
 export default Navbar;
-
-
 
 /* Important Notes
 /**
