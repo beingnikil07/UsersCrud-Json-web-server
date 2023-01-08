@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NotFound from "./components/pages/NotFound";
 import AddUser from "./users/AddUser";
 import EditUser from "./users/EditUser";
+import ReadUser from './users/ReadUser';
 function App() {
   return (
     <div className="App">
@@ -19,11 +20,8 @@ function App() {
           <Route exact path="/contact" element={<Contact />}></Route>
           <Route path="/*" element={<NotFound />}></Route>
           <Route exact path="users/adduser" element={<AddUser />}></Route>
-          <Route
-            exact
-            path="users/edituser/:id"
-            element={<EditUser />}
-          ></Route>
+          <Route exact path="users/edituser/:id" element={<EditUser />}></Route>
+          <Route exact path="users/:id" element={<ReadUser />}></Route>
           {/* :id ,here we are doing dynamic routing */}
         </Routes>
       </Router>

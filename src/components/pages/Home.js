@@ -38,7 +38,7 @@ const Home = () => {
                 <td>{user.username}</td>
                 <td>{user.email}</td>
                 <td>
-                  <Link className="btn btn-primary mx-1 ">View</Link>
+                  <Link className="btn btn-primary mx-1 " to={`/users/${user.id}`}>View</Link>
                   <Link
                     className="btn btn-outline-primary mx-1"
                     exact

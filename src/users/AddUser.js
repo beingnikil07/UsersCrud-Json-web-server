@@ -11,6 +11,7 @@ const AddUser = () => {
     phone: "",
     website: "",
   });
+
   //destructuring from state 
   const {name, username, email, phone, website } = user;
   const onInputChange = (event) => {
