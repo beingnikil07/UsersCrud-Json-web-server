@@ -39,7 +39,7 @@ const Navbar = () => {
             </ul>
           </div>
           <Link>
-            <Link className="btn btn-primary bg-success mr-2" exact to="/adduser">Add User</Link>
+            <Link className="btn btn-primary bg-success mr-2" exact to="users/adduser">Add User</Link>
           </Link>
         </div>
       </nav>

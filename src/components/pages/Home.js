@@ -33,13 +33,15 @@ const Home = () => {
                 <td>{user.username}</td>
                 <td>{user.email}</td>
                 <td>
-                  <Link>
-                    <button className="btn btn-primary mx-1 ">View</button>
-                    <button className="btn btn-outline-primary mx-1">
-                      Edit
-                    </button>
-                    <button className="btn btn-danger mx-1">Delete</button>
+                  <Link className="btn btn-primary mx-1 ">View</Link>
+                  <Link
+                    className="btn btn-outline-primary mx-1"
+                    exact
+                    to="/users/edituser"
+                  >
+                    Edit
                   </Link>
+                  <Link className="btn btn-danger mx-1">Delete</Link>
                 </td>
               </tr>
             ))}
