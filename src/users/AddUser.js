@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 const AddUser = () => {
-  // By default sabki initial value set krr di
+ let navigate=useNavigate();
   const [user, setUser] = useState({
     name: "",
     username: "",
@@ -9,18 +11,25 @@ const AddUser = () => {
     phone: "",
     website: "",
   });
-  const { name, username, email, phone, website } = user;
-  // extracting from user state kyuki state mai he humne svv
-  //kuch store karwaya hai
+  //destructuring from state 
+  const {name, username, email, phone, website } = user;
   const onInputChange = (event) => {
-    setUser({ [event.target.name]: event.target.value });
-    //value param ko input ke name attribute diya kyuki jaise he user kisi field ko change karega to uske
-    //corresponding field select ho lega aur wo value store ho legi onchange prr name mai aur show hogi
-    //realtime style mai humko
+    setUser({...user,[event.target.name]: event.target.value });
+    //...user lagaya otherwise previous data nii milega 
   };
+
+  const onSubmit = async (event) => {
+    event.preventDefault(); // stops the default behavior of events
+    await axios.post("http://localhost:3001/users", user); // hum user send krr rhe hai to user likha
+    navigate("/"); // for redirecting to home page after user add
+    //using useNavigate hook we can redirect from one route to another like here we are
+    // redirecting to home page after add the user
+  };
+
   return (
     <div className="container w-50 my-3">
-      <form>
+      <form onSubmit={(event) => onSubmit(event)}>
+        {/* Creating function and receiving param from fun */}
         <h1 className="text-center">Add User</h1>
         <div className="mb-3">
           <input
@@ -40,8 +49,8 @@ const AddUser = () => {
           <input
             type="text"
             className="form-control my-2 p-2"
-            id="exampleInputName"
-            aria-describedby="nameHelp"
+            id="exampleInputusername"
+            aria-describedby="usernameHelp"
             placeholder="Enter Your User Name"
             name="username"
             value={username}
@@ -50,10 +59,10 @@ const AddUser = () => {
             }}
           />
         </div>
-        <div class="mb-3">
+        <div className="mb-3">
           <input
             type="email"
-            class="form-control my-2 p-2"
+            className="form-control my-2 p-2"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             placeholder="Enter Your E-mail Address"
@@ -64,12 +73,12 @@ const AddUser = () => {
             }}
           />
         </div>
-        <div class="mb-3">
+        <div className="mb-3">
           <input
             type="number"
-            class="form-control my-2 p-2"
+            className="form-control my-2 p-2"
             id="exampleInputPhone"
-            aria-describedby="emailHelp"
+            aria-describedby="phoneHelp"
             placeholder="Enter Your Phone Number"
             name="phone"
             value={phone}
