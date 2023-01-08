@@ -9,7 +9,8 @@ const Home = () => {
 
   let loadUsers = async () => {
     const result = await axios.get("http://localhost:3001/users");
-    setUsers(result.data);
+    setUsers(result.data.reverse()); // To reverse the user list behavior now if you will add some data
+    // it will show you top in the list
   };
   return (
     <div className="container">
