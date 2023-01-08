@@ -12,6 +12,11 @@ const Home = () => {
     setUsers(result.data.reverse()); // To reverse the user list behavior now if you will add some data
     // it will show you top in the list
   };
+
+  const deleteUser = async (id) => {
+    await axios.delete(`http://localhost:3001/users/${id}`);
+    loadUsers(); //after deleting user show remaining by loading again
+  };
   return (
     <div className="container">
       <div className="py-4">
@@ -37,11 +42,18 @@ const Home = () => {
                   <Link
                     className="btn btn-outline-primary mx-1"
                     exact
-                    to={`/users/edituser/${user.id}`}  
+                    to={`/users/edituser/${user.id}`}
                   >
                     Edit
                   </Link>
-                  <Link className="btn btn-danger mx-1">Delete</Link>
+                  <Link
+                    className="btn btn-danger mx-1"
+                    onClick={() => {
+                      deleteUser(user.id);
+                    }}
+                  >
+                    Delete
+                  </Link>
                 </td>
               </tr>
             ))}
