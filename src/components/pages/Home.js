@@ -37,7 +37,7 @@ const Home = () => {
                   <Link
                     className="btn btn-outline-primary mx-1"
                     exact
-                    to="/users/edituser"
+                    to={`/users/edituser/${user.id}`}  
                   >
                     Edit
                   </Link>

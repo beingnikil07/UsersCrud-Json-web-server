@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from "react-router-dom";
 
 const EditUser = () => {
- let navigate=useNavigate();
+  let navigate = useNavigate();
+  const { id } = useParams(); //destructruing id from route
   const [user, setUser] = useState({
     name: "",
     username: "",
@@ -11,22 +12,33 @@ const EditUser = () => {
     phone: "",
     website: "",
   });
-  //destructuring from state 
-  const {name, username, email, phone, website } = user;
+
+  const { name, username, email, phone, website } = user;
   const onInputChange = (event) => {
-    setUser({...user,[event.target.name]: event.target.value });
+    setUser({ ...user, [event.target.name]: event.target.value });
   };
 
+  useEffect(() => {
+    loadUsers();
+  }, []);
+
   const onSubmit = async (event) => {
-    event.preventDefault(); 
-    await axios.post("http://localhost:3001/users", user); 
+    event.preventDefault();
+    await axios.put(`http://localhost:3001/users/${id}`,user);
     navigate("/");
+  };
+
+  const loadUsers = async () => {
+    let results = await axios.get(`http://localhost:3001/users/${id}`);
+    //console.log(results);
+    setUser(results.data); // user ko results.data set krr diya it mean id jo bhi hogi
+    //uske corresponding data mil jaayega user ka
   };
 
   return (
     <div className="container w-50 my-3">
       <form onSubmit={(event) => onSubmit(event)}>
-          <h1 className="text-center">Edit User</h1>
+        <h1 className="text-center">Update User</h1>
         <div className="mb-3">
           <input
             type="text"
@@ -37,7 +49,7 @@ const EditUser = () => {
             name="name"
             value={name}
             onChange={(event) => {
-              onInputChange(event); 
+              onInputChange(event);
             }}
           />
         </div>
@@ -51,7 +63,7 @@ const EditUser = () => {
             name="username"
             value={username}
             onChange={(event) => {
-              onInputChange(event); 
+              onInputChange(event);
             }}
           />
         </div>
@@ -79,7 +91,7 @@ const EditUser = () => {
             name="phone"
             value={phone}
             onChange={(event) => {
-              onInputChange(event); 
+              onInputChange(event);
             }}
           />
         </div>
@@ -93,11 +105,11 @@ const EditUser = () => {
             name="website"
             value={website}
             onChange={(event) => {
-              onInputChange(event); 
+              onInputChange(event);
             }}
           />
         </div>
-        <button type="submit" className="btn btn-primary w-100 p-2">
+        <button type="submit" className="btn btn-warning w-100 p-2">
           Submit
         </button>
       </form>

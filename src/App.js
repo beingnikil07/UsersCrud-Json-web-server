@@ -4,10 +4,10 @@ import Navbar from "./components/layout/Navbar";
 import Home from "./components/pages/Home";
 import Contact from "./components/pages/Contact";
 import About from "./components/pages/About";
-import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NotFound from "./components/pages/NotFound";
-import AddUser from './users/AddUser';
-import EditUser from './users/EditUser';
+import AddUser from "./users/AddUser";
+import EditUser from "./users/EditUser";
 function App() {
   return (
     <div className="App">
@@ -19,7 +19,12 @@ function App() {
           <Route exact path="/contact" element={<Contact />}></Route>
           <Route path="/*" element={<NotFound />}></Route>
           <Route exact path="users/adduser" element={<AddUser />}></Route>
-          <Route exact path="users/edituser" element={<EditUser />}></Route>
+          <Route
+            exact
+            path="users/edituser/:id"
+            element={<EditUser />}
+          ></Route>
+          {/* :id ,here we are doing dynamic routing */}
         </Routes>
       </Router>
     </div>
